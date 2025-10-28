@@ -1,0 +1,17 @@
+touch Dockerfile
+vim Dockerfile
+
+FROM httpd:2.4 #Use the official Apache HTTP Server image
+COPY ./public-html/ /usr/local/apache2/htdocs/ #Copy your homepage files to Apache's document root
+EXPOSE 80 #Expose port 80 for HTTP traffic
+
+
+Place your homepage files (HTML, CSS, JS, etc.) in a directory named public-html (or similar) in the same location as your Dockerfile.
+
+build docker image 
+docker build -t my-apache-homepage .
+
+run apache server
+docker run -d --name my-homepage-app -p 8080:80 my-apache-homepage
+
+You can access your homepage at http://localhost:8080
